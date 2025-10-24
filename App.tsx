@@ -19,6 +19,7 @@ const App: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [totalTime] = useState(quizQuestions.length * 90);
+  const [wasPracticeQuiz, setWasPracticeQuiz] = useState(false);
 
   const startQuiz = useCallback((currentUser: User, isPractice: boolean = false) => {
     const takers: string[] = JSON.parse(localStorage.getItem('quiz_takers') || '[]');
@@ -27,6 +28,7 @@ const App: React.FC = () => {
       return;
     }
 
+    setWasPracticeQuiz(isPractice);
     setUser(currentUser);
     setQuestions(shuffleArray(quizQuestions));
     setUserAnswers(new Array(quizQuestions.length).fill(''));
@@ -96,7 +98,7 @@ const App: React.FC = () => {
                 score={score}
                 totalQuestions={questions.length}
                 correctAnswers={userAnswers.filter((ans, i) => questions[i] && ans === questions[i].answer).length}
-                onRestart={restart}
+                onRestart={wasPracticeQuiz ? restart : undefined}
             />
         );
       case AppState.Admin:

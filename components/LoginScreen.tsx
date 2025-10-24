@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { User } from '../types';
 import Modal from './Modal';
 
@@ -13,10 +13,28 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onStart, onAdminLogin }) => {
   const [lastName, setLastName] = useState('');
   const [professionalId, setProfessionalId] = useState('');
   const [error, setError] = useState('');
+  const [idAlreadyTaken, setIdAlreadyTaken] = useState(false);
   const [showPracticePassword, setShowPracticePassword] = useState(false);
   const [showAdminPassword, setShowAdminPassword] = useState(false);
 
+  useEffect(() => {
+    if (professionalId) {
+      const takers: string[] = JSON.parse(localStorage.getItem('quiz_takers') || '[]');
+      if (takers.includes(professionalId)) {
+        setIdAlreadyTaken(true);
+        setError(''); // Clear other errors
+      } else {
+        setIdAlreadyTaken(false);
+      }
+    } else {
+        setIdAlreadyTaken(false);
+    }
+  }, [professionalId]);
+
   const handleSubmit = () => {
+    if (idAlreadyTaken) {
+        return; // Button is disabled, but as an extra check
+    }
     if (!firstName || !lastName || !professionalId) {
       setError('Todos los campos son obligatorios.');
       return;
@@ -78,11 +96,13 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onStart, onAdminLogin }) => {
             />
         </div>
 
+        {idAlreadyTaken && <p className="text-orange-600 font-semibold mt-4">Este número de colegiado ya ha completado el cuestionario.</p>}
         {error && <p className="text-red-500 mt-4">{error}</p>}
 
         <button 
             onClick={handleSubmit}
-            className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg mt-8 hover:bg-blue-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
+            disabled={idAlreadyTaken}
+            className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg mt-8 hover:bg-blue-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:bg-slate-400 disabled:cursor-not-allowed disabled:transform-none"
         >
             Iniciar Cuestionario
         </button>

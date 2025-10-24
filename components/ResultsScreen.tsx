@@ -7,7 +7,7 @@ interface ResultsScreenProps {
   score: number;
   totalQuestions: number;
   correctAnswers: number;
-  onRestart: () => void;
+  onRestart?: () => void;
 }
 
 const ResultsScreen: React.FC<ResultsScreenProps> = ({ user, score, totalQuestions, correctAnswers, onRestart }) => {
@@ -50,12 +50,14 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ user, score, totalQuestio
             >
                 Descargar Certificado
             </button>
-            <button
-                onClick={onRestart}
-                className="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
-            >
-                Volver al Inicio
-            </button>
+            {onRestart && (
+                <button
+                    onClick={onRestart}
+                    className="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                >
+                    Volver al Inicio
+                </button>
+            )}
         </div>
     </div>
   );
