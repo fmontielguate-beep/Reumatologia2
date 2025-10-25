@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import LoginScreen from './components/LoginScreen';
 import QuizScreen from './components/QuizScreen';
@@ -110,7 +109,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-blue-200 min-h-screen text-slate-800 flex items-center justify-center p-4">
+    <div className="bg-gradient-to-br from-slate-900 to-slate-800 min-h-screen text-slate-200 flex items-center justify-center p-4">
         <main className="w-full max-w-4xl mx-auto">
             {renderContent()}
         </main>

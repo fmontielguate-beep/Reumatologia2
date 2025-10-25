@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { StoredResult } from '../types';
 
@@ -17,30 +16,30 @@ const AdminScreen: React.FC<AdminScreenProps> = ({ onBack }) => {
   }, []);
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-4xl mx-auto animate-fade-in">
+    <div className="bg-slate-800 p-8 rounded-2xl shadow-xl w-full max-w-4xl mx-auto animate-fade-in">
         <div className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-bold text-blue-800">Panel de Administrador</h1>
-            <button onClick={onBack} className="text-blue-600 hover:underline">Volver al Inicio</button>
+            <h1 className="text-3xl font-bold text-blue-300">Panel de Administrador</h1>
+            <button onClick={onBack} className="text-blue-400 hover:underline">Volver al Inicio</button>
         </div>
       
         <div className="overflow-x-auto">
             {results.length > 0 ? (
-                <table className="min-w-full bg-white border border-blue-200">
-                    <thead className="bg-blue-50">
+                <table className="min-w-full bg-slate-800 border border-slate-700">
+                    <thead className="bg-slate-700">
                         <tr>
-                            <th className="py-3 px-4 border-b text-left text-sm font-semibold text-blue-800">Nombre</th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-semibold text-blue-800">ID Profesional</th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-semibold text-blue-800">Fecha</th>
-                            <th className="py-3 px-4 border-b text-center text-sm font-semibold text-blue-800">Nota</th>
+                            <th className="py-3 px-4 border-b border-slate-600 text-left text-sm font-semibold text-blue-300">Nombre</th>
+                            <th className="py-3 px-4 border-b border-slate-600 text-left text-sm font-semibold text-blue-300">ID Profesional</th>
+                            <th className="py-3 px-4 border-b border-slate-600 text-left text-sm font-semibold text-blue-300">Fecha</th>
+                            <th className="py-3 px-4 border-b border-slate-600 text-center text-sm font-semibold text-blue-300">Nota</th>
                         </tr>
                     </thead>
-                    <tbody className="text-slate-700">
+                    <tbody className="text-slate-300">
                         {results.map((result, index) => (
-                            <tr key={index} className="hover:bg-blue-50 transition">
-                                <td className="py-3 px-4 border-b">{result.firstName} {result.lastName}</td>
-                                <td className="py-3 px-4 border-b">{result.professionalId}</td>
-                                <td className="py-3 px-4 border-b text-sm text-slate-500">{result.date}</td>
-                                <td className={`py-3 px-4 border-b text-center font-bold ${result.score >= 60 ? 'text-green-600' : 'text-red-600'}`}>
+                            <tr key={index} className="hover:bg-slate-700 transition">
+                                <td className="py-3 px-4 border-b border-slate-600">{result.firstName} {result.lastName}</td>
+                                <td className="py-3 px-4 border-b border-slate-600">{result.professionalId}</td>
+                                <td className="py-3 px-4 border-b border-slate-600 text-sm text-slate-400">{result.date}</td>
+                                <td className={`py-3 px-4 border-b border-slate-600 text-center font-bold ${result.score >= 60 ? 'text-green-400' : 'text-red-400'}`}>
                                     {result.score}%
                                 </td>
                             </tr>
@@ -48,7 +47,7 @@ const AdminScreen: React.FC<AdminScreenProps> = ({ onBack }) => {
                     </tbody>
                 </table>
             ) : (
-                <p className="text-center text-slate-500 py-10">No hay resultados para mostrar.</p>
+                <p className="text-center text-slate-400 py-10">No hay resultados para mostrar.</p>
             )}
         </div>
     </div>

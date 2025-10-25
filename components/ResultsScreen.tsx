@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { User } from '../types';
 
@@ -15,7 +14,7 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ user, score, totalQuestio
 
   const handleDownload = () => {
     if (certificateRef.current && (window as any).html2canvas) {
-      (window as any).html2canvas(certificateRef.current, { scale: 2 }).then((canvas: HTMLCanvasElement) => {
+      (window as any).html2canvas(certificateRef.current, { scale: 2, backgroundColor: '#1e293b' }).then((canvas: HTMLCanvasElement) => {
         const link = document.createElement('a');
         link.download = `Certificado-${user?.firstName}-${user?.lastName}.png`;
         link.href = canvas.toDataURL('image/png');
@@ -25,22 +24,22 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ user, score, totalQuestio
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl mx-auto text-center animate-fade-in">
-        <div ref={certificateRef} className="bg-gradient-to-br from-blue-50 to-blue-200 p-8 rounded-lg mb-8">
-            <h1 className="text-3xl font-bold text-blue-800 mb-2">Resultados del Cuestionario</h1>
-            <p className="text-slate-600 text-lg mb-6">Felicitaciones, {user?.firstName} {user?.lastName}!</p>
+    <div className="bg-slate-800 p-8 rounded-2xl shadow-xl w-full max-w-2xl mx-auto text-center animate-fade-in">
+        <div ref={certificateRef} className="bg-gradient-to-br from-slate-700 to-slate-800 p-8 rounded-lg mb-8 text-white">
+            <h1 className="text-3xl font-bold text-blue-300 mb-2">Resultados del Cuestionario</h1>
+            <p className="text-slate-300 text-lg mb-6">Felicitaciones, {user?.firstName} {user?.lastName}!</p>
             
             <div className="my-8">
-                <div className={`mx-auto w-40 h-40 rounded-full flex items-center justify-center text-5xl font-extrabold ${score >= 60 ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
+                <div className={`mx-auto w-40 h-40 rounded-full flex items-center justify-center text-5xl font-extrabold ${score >= 60 ? 'bg-green-900 text-green-400' : 'bg-red-900 text-red-400'}`}>
                     {score}%
                 </div>
             </div>
 
-            <p className="text-slate-700 text-xl">
+            <p className="text-slate-200 text-xl">
                 Has respondido correctamente a <strong>{correctAnswers}</strong> de <strong>{totalQuestions}</strong> preguntas.
             </p>
-            <p className="text-sm text-slate-500 mt-4">ID Profesional: {user?.professionalId}</p>
-            <p className="text-xs text-slate-400 mt-1">Fecha: {new Date().toLocaleDateString()}</p>
+            <p className="text-sm text-slate-400 mt-4">ID Profesional: {user?.professionalId}</p>
+            <p className="text-xs text-slate-500 mt-1">Fecha: {new Date().toLocaleDateString()}</p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface TimerProps {
@@ -15,7 +14,7 @@ const Timer: React.FC<TimerProps> = ({ seconds }) => {
   const isLowTime = seconds <= 60;
 
   return (
-    <div className={`text-lg font-bold p-2 rounded-lg ${isLowTime ? 'text-red-500 animate-pulse' : 'text-slate-700'}`}>
+    <div className={`text-lg font-bold p-2 rounded-lg ${isLowTime ? 'text-red-500 animate-pulse' : 'text-slate-200'}`}>
         <span>{formatTime(seconds)}</span>
     </div>
   );

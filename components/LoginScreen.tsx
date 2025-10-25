@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { User } from '../types';
 import Modal from './Modal';
@@ -68,9 +67,9 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onStart, onAdminLogin }) => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg mx-auto text-center animate-fade-in">
-        <h1 className="text-3xl md:text-4xl font-bold text-blue-800 mb-2">Medical Quiz Challenge</h1>
-        <p className="text-slate-600 mb-8">Ponga a prueba sus conocimientos.</p>
+    <div className="bg-slate-800 p-8 rounded-2xl shadow-xl w-full max-w-lg mx-auto text-center animate-fade-in">
+        <h1 className="text-3xl md:text-4xl font-bold text-blue-300 mb-2">Reumatología Pediátrica</h1>
+        <p className="text-slate-400 mb-8">Ponga a prueba sus conocimientos.</p>
         
         <div className="space-y-4 text-left">
             <input 
@@ -78,38 +77,38 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onStart, onAdminLogin }) => {
                 placeholder="Nombre" 
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                className="w-full px-4 py-3 bg-slate-700 text-white border border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
             />
             <input 
                 type="text" 
                 placeholder="Apellido" 
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                className="w-full px-4 py-3 bg-slate-700 text-white border border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
             />
             <input 
                 type="text" 
                 placeholder="Número de Colegiado" 
                 value={professionalId}
                 onChange={(e) => setProfessionalId(e.target.value)}
-                className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                className="w-full px-4 py-3 bg-slate-700 text-white border border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
             />
         </div>
 
-        {idAlreadyTaken && <p className="text-orange-600 font-semibold mt-4">Este número de colegiado ya ha completado el cuestionario.</p>}
+        {idAlreadyTaken && <p className="text-orange-500 font-semibold mt-4">Este número de colegiado ya ha completado el cuestionario.</p>}
         {error && <p className="text-red-500 mt-4">{error}</p>}
 
         <button 
             onClick={handleSubmit}
             disabled={idAlreadyTaken}
-            className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg mt-8 hover:bg-blue-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:bg-slate-400 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg mt-8 hover:bg-blue-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:bg-slate-600 disabled:cursor-not-allowed disabled:transform-none"
         >
             Iniciar Cuestionario
         </button>
 
         <div className="mt-6 flex justify-between items-center text-sm">
-            <button onClick={() => setShowPracticePassword(true)} className="text-blue-600 hover:underline">Curso de Prueba</button>
-            <button onClick={() => setShowAdminPassword(true)} className="text-slate-500 hover:underline">Acceso Administrador</button>
+            <button onClick={() => setShowPracticePassword(true)} className="text-blue-400 hover:underline">Curso de Prueba</button>
+            <button onClick={() => setShowAdminPassword(true)} className="text-slate-400 hover:underline">Acceso Administrador</button>
         </div>
         
         {showPracticePassword && (

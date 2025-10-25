@@ -1,5 +1,5 @@
 {
-  "name": "Medical Quiz Challenge",
+  "name": "Reumatología Pediátrica",
   "description": "An interactive, timed medical quiz application for professionals. Participants can test their knowledge, receive a score, and generate a certificate of completion. Includes an administrator view to track results.",
   "requestFramePermissions": []
 }
